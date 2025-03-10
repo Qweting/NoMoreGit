@@ -64,4 +64,5 @@ public class BulletOP : MonoBehaviour
     {
         return _bulletsActive;
     }
+    
 }

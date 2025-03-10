@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
 
-    private float _fireRate = 2f; // rate of fire in bullets per second
+    public float _fireRate = 1f; // rate of fire in bullets per second
     private float _nextFireTime = 0; //duration between shots
 
     

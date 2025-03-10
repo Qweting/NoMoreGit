@@ -1,3 +1,4 @@
+using GameWorld.GameObjects.PowerupPanels;
 using TMPro;
 using UnityEngine;
 public class Powerups : MonoBehaviour
@@ -21,7 +22,7 @@ public class Powerups : MonoBehaviour
 
     void Start() //set the text of the perk 
     {
-        perkText.text = Health + "";
+        perkText.text = Health + "X";
     }
 
     void Update()
@@ -38,7 +39,7 @@ public class Powerups : MonoBehaviour
             PowerupManager.Instance.DeactivatePanel(gameObject); //this basically removes it from the view 
         }
         if(perkText != null) //we call on the text in the update so it keeps updating with the correct value 
-            perkText.text = Health + "";
+            SetPerkText();
     }
 
     public void AssignGoodColor(bool isGood) //we assign the color of the panel, if true then color is blue
@@ -56,7 +57,11 @@ public class Powerups : MonoBehaviour
     public void SetPerkText() //this is the function that needs to work 
     {
         if(FireRateMultiplier != 0)
-            perkText.text = FireRateMultiplier + " X";  
+            perkText.text = "FR\n" + FireRateMultiplier + "X";  
+        else if(DamageMultiplier != 0)
+            perkText.text = "D\n" + DamageMultiplier + "X";
+        else if(PlayerMultiplier != 0)
+            perkText.text = "X\n" + PlayerMultiplier + "X";
         else
             perkText.text = "X";
     }

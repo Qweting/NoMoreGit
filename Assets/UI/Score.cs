@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mime;
 using System.Text.RegularExpressions;
+using GameWorld.GameObjects.PowerupPanels;
 using TMPro;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -16,9 +17,10 @@ public class Score : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI roundText;
     public TextMeshProUGUI playerHealthText;
+    public TextMeshProUGUI debug;
 
     private int score = 0;
-    private int round = 1;
+    private int round = 5;
     private int zombiesKilled = 0; 
     
 
@@ -27,6 +29,10 @@ public class Score : MonoBehaviour
     
 
     public bool spawn = false;
+    
+    
+    public bool spawnBoss = false;
+    public GameObject boss;
     
     //a counter that keeps track of the rounds, it is used for spawning the power up panels
     public int roundCounter = 0; 
@@ -41,11 +47,6 @@ public class Score : MonoBehaviour
     }
     void Update()
     {
-        if(spawn)
-        {
-            SpawnPanels();
-            spawn = false;
-        }
     }
 
     public void UpdateRound()
@@ -65,7 +66,7 @@ public class Score : MonoBehaviour
             round++;
             roundCounter++;
             zombiesKilled = 0;
-            SpawnPanels();
+            Game.Instance.NotifyRound();
         }
         scoreText.text = "Score: " + score;
     }
