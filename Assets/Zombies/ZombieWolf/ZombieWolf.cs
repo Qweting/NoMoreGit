@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ZombieWolf : MonoBehaviour
 {
-    private int health = 20;
-    private int damage = 10;
+    private float health = 20;
+    private float damage = 10;
 
-    private int speed = 15;
+    private float speed = 15;
     
     private Animator anim;
     
@@ -31,18 +31,42 @@ public class ZombieWolf : MonoBehaviour
         var step = speed * Time.deltaTime;
         //Move towards the player
         transform.position = Vector3.MoveTowards(transform.position, direction, step);
-        
-         
-        if(health <= 0)
-        {
-            //destroy the zombie
-            Destroy(gameObject);
-        } else if (transform.position.z <= 5) //if the boss reaches the player, the player takes damage
+
+        if (transform.position.z <= 5) //if the boss reaches the player, the player takes damage
         {
             anim.SetBool("IsRunning", false); //play dead animation
             anim.SetBool("IsAttacking", true); //play dead animation
-        }else 
+        }
+        else 
             anim.SetBool("IsRunning", true); //play dead animation
             
     }
+    
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+    }
+    
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+    
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            Bullet bullet = other.GetComponent<Bullet>();
+            if (bullet != null)
+            {
+                other.gameObject.SetActive(false);
+                if (health > 0)
+                    TakeDamage(bullet.Damage);
+                else if(health <= 0)
+                    Die();
+            }
+        }
+    }
+    
+    
 }

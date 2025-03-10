@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Game : MonoBehaviour
 {
     public static Game Instance;
-    
+
     
     public GameObject scoreObject;
     
@@ -33,6 +33,7 @@ public class Game : MonoBehaviour
         if (Instance == null)
             Instance = this;
         Start();
+        Pause();
     }
     
     void Start()
@@ -52,6 +53,17 @@ public class Game : MonoBehaviour
     public void NotifyRound()
     {
         Math.Max(score.roundCounter + 2, 40);
+    }
+
+    public void UnPause()
+    {
+        Time.timeScale = 1;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+        MenuUI.Instance.gameObject.SetActive(true);
     }
     
     

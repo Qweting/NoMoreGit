@@ -11,7 +11,6 @@ public class Zombie : MonoBehaviour
     private GameObject _playerObject;
     private GameObject _score;
     private Animator animator;
-    public GameObject healthBarManager;
     
     
     
@@ -20,8 +19,6 @@ public class Zombie : MonoBehaviour
         //get the player object
         _playerObject = GameObject.FindGameObjectWithTag("Player");
         _score = GameObject.FindGameObjectWithTag("Score");
-        healthBarManager = GameObject.Find("HealthBarManager");
-        healthBarManager.GetComponent<HealthBarManager>().SetHealth(_health);
         animator = GetComponent<Animator>();
         if (_playerObject!= null)
             _player = _playerObject.transform;
@@ -99,10 +96,7 @@ public class Zombie : MonoBehaviour
             {
                 other.gameObject.SetActive(false);
                 if (Health > 0)
-                {
                     TakeDamage(bullet.Damage);
-                    healthBarManager.GetComponent<HealthBarManager>().SetHealth(Health);
-                }
                 else if(Health <= 0)
                     Die();
             }
