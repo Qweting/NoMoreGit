@@ -16,7 +16,6 @@ namespace GameWorld.GameObjects.PowerupPanels
         private int _perkType; // 0 = player multiplier, 1 = fire rate multiplier, 2 = damage multiplier
         private bool _setFireRate = false; //we use this to check if the random perk we genreated is fire rate
         private bool _setDamage = false; //used for checkinf if the perk is damager
-        private bool _setPlayerMultiplier = false; //same as before but for player character multiplayer
 
         // The two panel instances we'll reuse
         private GameObject _leftPanel; //the left and right panel gameobjects
@@ -64,8 +63,6 @@ namespace GameWorld.GameObjects.PowerupPanels
 
         void Update()
         {
-            
-            
             //left is deactivted and right is active so set the perk from the left panel
             if(!_leftPowerup.isActiveAndEnabled && _rightPowerup.isActiveAndEnabled) //left is destroyed 
             {
@@ -73,16 +70,12 @@ namespace GameWorld.GameObjects.PowerupPanels
                     weapon.SetFireRate(_leftPowerup.FireRateMultiplier);
                 else if (_setDamage) //or ikf its damage
                     bullet.Damage = _leftPowerup.DamageMultiplier;
-                else if (_setPlayerMultiplier) //or if its player multiplier obviouisly doesn't work. impålement it 
-                    return;
             } else if (_leftPowerup.isActiveAndEnabled && !_rightPowerup.isActiveAndEnabled) //right is destroyed
             {
                 if (_setFireRate)
                     weapon.SetFireRate(_rightPowerup.FireRateMultiplier);
                 else if (_setDamage)
                     bullet.Damage = _rightPowerup.DamageMultiplier;
-                else if (_setPlayerMultiplier)
-                    return;
             }
         }
 
@@ -139,22 +132,14 @@ namespace GameWorld.GameObjects.PowerupPanels
 
             switch (_perkType)
             {
-                case <= 25: // 25% chance
-                    panel.FireRateMultiplier = 0;
-                    panel.DamageMultiplier = 0;
-                    panel.PlayerMultiplier = Random.Range(1, 4); // Player multiplier
-                    _setPlayerMultiplier = true;
-                    break;
-                case > 25 and <= 50:
+                case <= 50:
                     panel.FireRateMultiplier = Random.Range(0.3f, 6f); // Fire rate multiplier
                     panel.DamageMultiplier = 0;
-                    panel.PlayerMultiplier = 0;
                     _setFireRate = true;
                     break;
                 case > 50:
                     panel.FireRateMultiplier = 0;
                     panel.DamageMultiplier = Random.Range(0.2f, 4f); // Damage multiplier
-                    panel.PlayerMultiplier = 0;
                     _setDamage = true;
                     break;
             }

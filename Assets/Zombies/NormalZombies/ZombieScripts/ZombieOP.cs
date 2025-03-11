@@ -13,6 +13,8 @@ public class ZombieOP : MonoBehaviour
     public int expandAmount = 10;
     public int dogPoolSize = 5;
 
+    
+
     void Awake()
     {
         SharedInstance = this;
@@ -25,7 +27,8 @@ public class ZombieOP : MonoBehaviour
         ExpandPool(initialPoolSize);
         InitializeDogPool(dogPoolSize);
     }
-
+    
+    
     public void ExpandPool(int amount)
     {
         for (int i = 0; i < amount; i++)

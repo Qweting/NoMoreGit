@@ -60,8 +60,6 @@ public class Powerups : MonoBehaviour
             perkText.text = "FR\n" + FireRateMultiplier + "X";  
         else if(DamageMultiplier != 0)
             perkText.text = "D\n" + DamageMultiplier + "X";
-        else if(PlayerMultiplier != 0)
-            perkText.text = "X\n" + PlayerMultiplier + "X";
         else
             perkText.text = "X";
     }
@@ -88,6 +86,5 @@ public class Powerups : MonoBehaviour
         Health = 0;
         FireRateMultiplier = 0;
         DamageMultiplier = 0;
-        PlayerMultiplier = 0;
     }
 }

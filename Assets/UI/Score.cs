@@ -17,22 +17,14 @@ public class Score : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI roundText;
     public TextMeshProUGUI playerHealthText;
-    public TextMeshProUGUI debug;
 
     private int score = 0;
-    private int round = 5;
+    private int round = 1;
     private int zombiesKilled = 0; 
     
 
     public GameObject player;
-    public GameObject zombie;
-    
 
-    public bool spawn = false;
-    
-    
-    public bool spawnBoss = false;
-    public GameObject boss;
     
     //a counter that keeps track of the rounds, it is used for spawning the power up panels
     public int roundCounter = 0; 
@@ -52,6 +44,8 @@ public class Score : MonoBehaviour
     public void UpdateRound()
     {
         roundText.text = "Round: " + round;
+        if (zombiesKilled == 20)
+            zombiesKilled = 0; 
     }
     
 
@@ -66,6 +60,7 @@ public class Score : MonoBehaviour
             round++;
             roundCounter++;
             zombiesKilled = 0;
+            
             Game.Instance.NotifyRound();
         }
         scoreText.text = "Score: " + score;
@@ -77,12 +72,10 @@ public class Score : MonoBehaviour
         playerHealthText.text = "Health: " + health;
     }
 
-    public void SpawnPanels()
+    public int GetZombiesKilled()
     {
-        // if (roundCounter % 5 == 0)
-            PowerupManager.Instance.SpawnPowerup(); // Spawn powerup panels
-            Debug.LogError("Powerup has been activated in Score.cs class");
+        return zombiesKilled;
     }
-    
+
     
 }

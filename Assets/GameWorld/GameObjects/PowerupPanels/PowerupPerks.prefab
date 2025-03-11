@@ -50,6 +50,7 @@ MonoBehaviour:
   rightPanelPrefab: {fileID: 6990765127541381445, guid: bd9533109f0625c90a4d8c0ba8befb6f, type: 3}
   leftAnchor: {fileID: 5477204899694711046}
   rightAnchor: {fileID: 8908222869086781139}
+  weaponPrefab: {fileID: 0}
   weapon: {fileID: 1727055726371965876, guid: fa81600ca3f9ea863a6f3568567d3216, type: 3}
   bullet: {fileID: 5330254801131945321, guid: cd537d9861226619eb4fbdaee3cbf203, type: 3}
 --- !u!1 &2974717170285554376
@@ -77,7 +78,7 @@ Transform:
   m_GameObject: {fileID: 2974717170285554376}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.5, y: 0, z: 0}
+  m_LocalPosition: {x: -4.5, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -108,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 6015273997648760089}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5, y: 0, z: 0}
+  m_LocalPosition: {x: 4.5, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

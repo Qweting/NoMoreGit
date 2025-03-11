@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuUI : MonoBehaviour
@@ -15,16 +16,21 @@ public class MenuUI : MonoBehaviour
             Instance = this;
     }
 
-    void OnClick()
+    void StartGame()
     {
         Game.Instance.UnPause();
         gameObject.SetActive(false);
     }
     
-    void Start()
+    void RestartGame()
     {
-        startButton.onClick.AddListener(OnClick);
+        SceneManager.LoadScene("GameScene");
+        gameObject.SetActive(false);
     }
     
-
+    void Start()
+    {
+        startButton.onClick.AddListener(StartGame);
+        restartButton.onClick.AddListener(RestartGame);
+    }
 }
